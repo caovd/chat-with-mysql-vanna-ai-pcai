@@ -1,0 +1,35 @@
+
+settings:
+  Chatmodel: ""
+  Chatmodelbaseurl: ""
+  Chatmodelkey: "fake"
+  DatabaseType: "mysql"
+  DatabasePath: "./db/"
+
+  # MySQL connection details
+  # Same-cluster host: mysql-svc.namespace.svc.cluster.local
+  # Cross-cluster host: mysql-host.example.com
+  mysqlHost: "<MYSQL_HOST>"        # e.g. mysql-svc.default.svc.cluster.local
+  mysqlPort: "3306"
+  mysqlUser: "<MYSQL_USER>"
+  mysqlPassword: "<MYSQL_PASSWORD>"
+  mysqlDatabase: "<MYSQL_DATABASE>" # e.g. Chinook
+
+image:
+  repository: caovd/vanna-ai
+  pullPolicy: IfNotPresent
+  tag: mysql-0.0.4
+
+service:
+  type: ClusterIP
+  port: 8084
+
+volumes: []
+volumeMounts: []
+
+
+ezua:
+  enabled: true
+  virtualService:
+    endpoint: ""
+    istioGateway: "istio-system/ezaf-gateway"
